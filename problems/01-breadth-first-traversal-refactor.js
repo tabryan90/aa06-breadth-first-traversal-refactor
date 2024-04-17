@@ -1,6 +1,6 @@
 /*
 The output of your printBreadthFirst function in the Simple Breadth-First
-Traversal project is useful for visualizing and debugging the traversal, but now
+Traversal project ir s useful fovisualizing and debugging the traversal, but now
 you need it to output the nodes in the graph in an array instead of printing
 them. Refactor your implementation of printBreadthFirst that instead
 of printing each node on a newline, the breadthFirstTraversal function adds each
@@ -17,7 +17,23 @@ const adjList = {
 }
 
 function breadthFirstTraversal(start) {
-  // Your code here 
+  const queue = [start];
+  const visited = new Set();
+  const results = [];
+
+  while (queue.length) {
+    let curr = queue.shift();
+
+    if (!visited.has(curr)) {
+      visited.add(curr);
+      results.push(curr);
+      for (let neighbor of adjList[curr]) {
+        queue.push(neighbor);
+      }
+    }
+  }
+
+  return results;
 }
 
 // console.log(breadthFirstTraversal(3)); // [3, 2, 4, 1, 5, 6]
